@@ -1,23 +1,16 @@
 <script setup>
-import {ref, computed, watchEffect} from 'vue'
-import {useEventsStorage} from 'src/services/useEventsStorage.js';
-    const TIMEOUT = 5;
+import {ref, computed} from 'vue'
+import {useEventsStorage} from '/src/services/useEventsStorage.js';
+    const TIMEOUT = 40*60;
     const {storage} = useEventsStorage();
     const getDiff = () => storage.value.lastEvent ?  Math.floor((Date.now() - storage.value.lastEvent.timestamp) / 1000): 0
-console.log(getDiff());
-    const countdown = ref(Math.max(TIMEOUT - getDiff(),0))
+
+    const countdown = ref(TIMEOUT - getDiff())
     const isReady = ref(countdown.value === 0);
-    watchEffect(() => {
-        countdown.value = Math.max(TIMEOUT - getDiff(),0)
-        isReady.value = countdown.value === 0
-        const timer = setInterval(() => {
-            countdown.value = countdown.value - 1;
-            if (countdown.value <= 0) {
-                clearInterval(timer);
-                isReady.value = true
-            }
+    setInterval(() => {
+            countdown.value = TIMEOUT - getDiff();
+            isReady.value = countdown.value <= 0
         }, 1000)
-    })
 
     const formattedTime = computed(() => {
         const time = new Date(countdown.value* 1000);

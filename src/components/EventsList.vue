@@ -1,6 +1,6 @@
 <script setup>
 import {ref, computed} from 'vue'
-import {useEventsStorage} from 'src/services/useEventsStorage.js';
+import {useEventsStorage} from '/src/services/useEventsStorage.js';
     const shown = ref(false)
     const {storage} = useEventsStorage();
     // return {addEvent}

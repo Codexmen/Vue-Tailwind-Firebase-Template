@@ -1,5 +1,5 @@
 <script setup>
-import {useEventsStorage} from 'src/services/useEventsStorage.js';
+import {useEventsStorage} from '/src/services/useEventsStorage.js';
     const {eventsForYesterday, eventsForToday, eventsForWeek, eventsForMonth, eventsForYear} = useEventsStorage();
 </script>
 

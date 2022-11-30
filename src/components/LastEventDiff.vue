@@ -1,6 +1,6 @@
 <script setup>
 import {ref, computed} from 'vue'
-import {useEventsStorage} from 'src/services/useEventsStorage.js';
+import {useEventsStorage} from '/src/services/useEventsStorage.js';
 
     const {storage} = useEventsStorage();
     const getDiff = () => storage.value.lastEvent ?  Math.floor((Date.now() - storage.value.lastEvent.timestamp) / 1000): 0

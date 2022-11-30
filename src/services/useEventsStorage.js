@@ -14,6 +14,7 @@ export function useEventsStorage() {
         events: storage.events,
     }
     function addEvent(timestamp) {
+        console.log('add event');
         storage.addEvent({timestamp});
         storageRef.value = {
             lastEvent: storage.lastEvent,
@@ -21,7 +22,6 @@ export function useEventsStorage() {
         }
     }
     function getEventsForPeriod(start, end = Date.now()) {
-        console.log(storageRef.value.events)
         return storageRef.value.events.filter(event => {
             return event.timestamp > start && event.timestamp < end
         })
@@ -29,7 +29,6 @@ export function useEventsStorage() {
     const eventsForToday= computed(() => {
         const start = new Date()
         start.setHours(0,0,0,0);
-        console.log(start);
         return getEventsForPeriod(start);
 
     })
