@@ -6,7 +6,7 @@ import {useEventsStorage} from '/src/services/useEventsStorage.js';
     const getDiff = () => storage.value.lastEvent ?  Math.floor((Date.now() - storage.value.lastEvent.timestamp) / 1000): 0
 
     const countdown = ref(TIMEOUT - getDiff())
-    const isReady = ref(countdown.value === 0);
+    const isReady = ref(countdown.value <= 0);
     setInterval(() => {
             countdown.value = TIMEOUT - getDiff();
             isReady.value = countdown.value <= 0

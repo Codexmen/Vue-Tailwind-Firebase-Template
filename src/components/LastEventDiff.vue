@@ -9,6 +9,7 @@ import {useEventsStorage} from '/src/services/useEventsStorage.js';
             diff.value = getDiff()
     }, 1000)
     const formattedTime = computed(() => {
+        // TODO: add login for > than 99 hours
         const time = new Date(diff.value* 1000);
         return ("0" + time.getUTCHours()).slice(-2)   + ":" +
         ("0" + time.getUTCMinutes()).slice(-2) + ":" +
