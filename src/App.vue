@@ -1,22 +1,30 @@
 <script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
-import AddEventButton from './components/AddEventButton.vue'
-import EventsList from './components/EventsList.vue'
-import LastEventDiff from './components/LastEventDiff.vue'
-import CountDownTimer from './components/CountDownTimer.vue'
-import Summary from './components/Summary.vue'
+import useUser from './useUser';
+import {useAuth}  from '/src/useAuth';
+import { useRouter } from 'vue-router'
+
+const {isLoggedIn} = useUser();
+const {logout} = useAuth();
+
+// TODO: move it in component Header
+const router = useRouter();
+const logOutAndRedirect = async () => {
+    await logout();
+    router.push('/');
+}
 </script>
 
 <template>
-  <div>
-    <AddEventButton />
-      <LastEventDiff />
-      <CountDownTimer />
-      <Summary />
-      <EventsList />
-  </div>
+    <div>
+        <router-link to="/">Home</router-link>
+        <router-link to="/protected">Protected</router-link>
+        <router-link v-if="!isLoggedIn" to="/login">Login</router-link>
+        <a href="#" @click="logOutAndRedirect" v-if="isLoggedIn">Logout</a>
+    </div>
+    <div>
+        <router-view />
+    </div>
+
 </template>
 
 

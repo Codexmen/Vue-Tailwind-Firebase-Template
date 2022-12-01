@@ -1,7 +1,25 @@
-# Vue 3 + Vite
+This is demo project that uses Firebase as backend
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-## Recommended IDE Setup
+###TODO Critical
+ 
+- Add singup form
+- Add DB
+- Hide Firebase creds in env
+- Deploy to netlify
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+#### TODO Middle
+ - add fields validation
+ - add styles 
+ - add layout
+
+##### TODO Minor
+
+
+
+#### Sources: 
+Auth delay + Router: https://dev.to/gautemeekolsen/vue-guard-routes-with-firebase-authentication-f4l
+
+Auth: https://learnvue.co/tutorials/vue-firebase-authentication
+
+Validation: https://learnvue.co/tutorials/intro-to-vuelidate#what-is-vuelidate
