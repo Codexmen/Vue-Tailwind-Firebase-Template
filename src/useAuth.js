@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import {getAuth, connectAuthEmulator, signInWithEmailAndPassword, signOut} from 'firebase/auth';
+import {getAuth, connectAuthEmulator, signInWithEmailAndPassword, createUserWithEmailAndPassword,  signOut} from 'firebase/auth';
 import {ref} from 'vue';
 
 // TODO: move to init file and set as env vars
@@ -49,6 +49,15 @@ function useAuth() {
                 errorMessage.value = mapErrorsToMessage(error.code)
             });
     }
+    const signUp = (email, password) => {
+        return createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                return true;
+            })
+            .catch((error) => {
+                errorMessage.value = mapErrorsToMessage(error.code)
+        });
+    };
     const logout = () => {
         signOut(auth).then(() => {
             // Sign-out successful.
@@ -56,7 +65,7 @@ function useAuth() {
             // An error happened.
         });
     }
-    return {login, logout, errorMessage, errorCode}
+    return {login, logout, signUp, errorMessage, errorCode}
 }
 export {auth, app, useAuth}
 

@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import LoginPage from '/src/pages/Login.vue';
+import SignUpPage from '/src/pages/SignUp.vue';
 import HomePage from '/src/pages/Home.vue';
 import ProtectedPage from '/src/pages/ProtectedRoute.vue';
 import {isUserLoggedInPromise} from "../useUser";
@@ -16,6 +17,11 @@ const router = createRouter({
       path: "/login",
       name: "login",
       component: LoginPage,
+    },
+    {
+      path: "/signup",
+      name: "SignUp",
+      component: SignUpPage,
     },
     {
       path: "/protected",
