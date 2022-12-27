@@ -1,17 +1,29 @@
 This is demo project that uses Firebase as backend
 
+How to start 
+nvm use v14.20.0
+npm run dev
+firebase emulators:start
 
-###TODO Critical
- 
-- Add singup form
-- Add DB
-- Hide Firebase creds in env
-- Deploy to netlify
+## Critical path
+ - add styles - tailwind, basic components, layout
+ - deploy
+ - add domain
+ - SEO and texts 
+
+###TODO Critical 
+- Add DB and only creator queries
+- add security rules in console
+- Hide Firebase creds in env and split it to dev/prod
+- Deploy to netlify/firebase cloud 
+- PWA
 
 #### TODO Middle
+- Add styles for forms
  - add fields validation
  - add styles 
  - add layout
+ - add cypress tests
 
 ##### TODO Minor
 

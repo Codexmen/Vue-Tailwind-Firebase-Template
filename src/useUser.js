@@ -5,7 +5,6 @@ const userData = ref({});
 const isLoggedIn = ref(false);
 
 auth.onAuthStateChanged((user) => {
-    console.log('onchange', user)
     userData.value = user;
     isLoggedIn.value = !!user
 })

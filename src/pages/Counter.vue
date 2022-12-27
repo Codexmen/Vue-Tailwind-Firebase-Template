@@ -1,9 +1,9 @@
 <script setup>
-import AddEventButton from './components/AddEventButton.vue'
-import EventsList from './components/EventsList.vue'
-import LastEventDiff from './components/LastEventDiff.vue'
-import CountDownTimer from './components/CountDownTimer.vue'
-import Summary from './components/Summary.vue'
+import AddEventButton from '/src/components/smoking/AddEventButton.vue'
+import EventsList from '/src/components/smoking/EventsList.vue'
+import LastEventDiff from '/src/components/smoking/LastEventDiff.vue'
+import CountDownTimer from '/src/components/smoking/CountDownTimer.vue'
+import Summary from '/src/components/smoking/Summary.vue'
 </script>
 
 <template>

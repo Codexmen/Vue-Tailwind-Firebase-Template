@@ -1,11 +1,11 @@
 <script setup>
 import {ref, computed} from 'vue'
-import {useEventsStorage} from '/src/services/useEventsStorage.js';
+import {useEventsStorage} from './useEventsStorage.js';
     const TIMEOUT = 40*60;
-    const {storage} = useEventsStorage();
-    const getDiff = () => storage.value.lastEvent ?  Math.floor((Date.now() - storage.value.lastEvent.timestamp) / 1000): 0
-
+    const {lastEvent} = useEventsStorage();
+    const getDiff = () => lastEvent.value ? Math.floor((Date.now() - lastEvent.value.timestamp) / 1000): TIMEOUT
     const countdown = ref(TIMEOUT - getDiff())
+
     const isReady = ref(countdown.value <= 0);
     setInterval(() => {
             countdown.value = TIMEOUT - getDiff();

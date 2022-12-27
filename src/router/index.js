@@ -3,6 +3,7 @@ import LoginPage from '/src/pages/Login.vue';
 import SignUpPage from '/src/pages/SignUp.vue';
 import HomePage from '/src/pages/Home.vue';
 import ProtectedPage from '/src/pages/ProtectedRoute.vue';
+import CounterPage from '/src/pages/Counter.vue';
 import {isUserLoggedInPromise} from "../useUser";
 
 const router = createRouter({
@@ -27,6 +28,14 @@ const router = createRouter({
       path: "/protected",
       name: "protected",
       component: ProtectedPage,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/counter",
+      name: "counter",
+      component: CounterPage,
       meta: {
         requiresAuth: true
       }

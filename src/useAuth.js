@@ -1,32 +1,22 @@
-import { initializeApp } from "firebase/app";
 import {getAuth, connectAuthEmulator, signInWithEmailAndPassword, createUserWithEmailAndPassword,  signOut} from 'firebase/auth';
 import {ref} from 'vue';
 
-// TODO: move to init file and set as env vars
-const firebaseConfig = {
-    apiKey: "AIzaSyDqJ8SAJQxmMeANiWEI1tfuNILtZFVRoUk",
-    authDomain: "abstract-ring-262510.firebaseapp.com",
-    projectId: "abstract-ring-262510",
-    storageBucket: "abstract-ring-262510.appspot.com",
-    messagingSenderId: "116442611422",
-    appId: "1:116442611422:web:b54def3ffbd30c7dfbcc4f",
-    measurementId: "G-0CLJYHJ8HW"
-};
+import {app} from '/src/services/firebase';
 
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-
 function mapErrorsToMessage(errorCode) {
+    console.log(`errorCode: ${errorCode}`)
     switch (errorCode) {
         case 'auth/invalid-email':
+            return 'You enter invalid email'
         case 'auth/user-not-found':
         case 'auth/wrong-password':
             return 'Email or password is wrong';
         case 'auth/user-disabled':
             return 'user blocked';
+            case 'auth/weak-password':
+            return 'You enter weak password';
         default:
             return 'Something went wrong';
     }

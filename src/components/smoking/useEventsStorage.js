@@ -1,34 +1,33 @@
-import {shallowRef, computed} from 'vue';
-import {EventsStorage} from "./EventsStorage.js";
+import {computed} from 'vue';
+import useStorage from '/src/services/useStorage'
 
-const storage = new EventsStorage();
-const storageRef = shallowRef({
-    lastEvent: undefined,
-    events: [],
-
-})
+const {isLoading, list, addItem, fetchList} = useStorage('events', {
+    fromApi: (data) => { return data},
+    toApi:  (data) => { return data},
+});
+const lastEvent = computed(() => {
+    return list.value[0];
+});
 
 export function useEventsStorage() {
-    storageRef.value = {
-        lastEvent: storage.lastEvent,
-        events: storage.events,
+    const addEvent = (timestamp) => {
+        addItem({timestamp});
+        fetchList();
     }
-    function addEvent(timestamp) {
-        storage.addEvent({timestamp});
-        storageRef.value = {
-            lastEvent: storage.lastEvent,
-            events: storage.events,
-        }
-    }
+
     function getEventsForPeriod(start, end = Date.now()) {
-        return storageRef.value.events.filter(event => {
+        return list.value.filter(event => {
             return event.timestamp > start && event.timestamp < end
         })
     }
-    const eventsForToday= computed(() => {
+
+    const eventsForToday = computed(() => {
         const start = new Date()
         start.setHours(0,0,0,0);
-        return getEventsForPeriod(start);
+        return list.value.filter(event => {
+            return event.timestamp > start && event.timestamp < Date.now()
+        })
+        // return getEventsForPeriod(start);
 
     })
     const eventsForYesterday = computed(() => {
@@ -59,13 +58,11 @@ export function useEventsStorage() {
 
         return getEventsForPeriod(start);
     })
-    return {
-        storage: storageRef,
-        addEvent,
-        eventsForToday,
+
+    return {lastEvent, list, isLoading, eventsForToday,
         eventsForYesterday,
         eventsForWeek,
         eventsForMonth,
-        eventsForYear,
-    }
-}
+        eventsForYear, addEvent};
+};
+

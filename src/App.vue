@@ -17,7 +17,8 @@ const logOutAndRedirect = async () => {
 <template>
     <div>
         <router-link to="/">Home</router-link>
-        <router-link to="/protected">Protected</router-link>
+        <router-link v-if="isLoggedIn" to="/protected">Protected</router-link>
+        <router-link v-if="isLoggedIn" to="/counter">SigCounter</router-link>
         <router-link v-if="!isLoggedIn" to="/login">Login</router-link>
         <router-link v-if="!isLoggedIn" to="/signup">Sign Up</router-link>
         <a href="#" @click="logOutAndRedirect" v-if="isLoggedIn">Logout</a>
