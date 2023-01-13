@@ -13,6 +13,8 @@ function mapErrorsToMessage(errorCode) {
         case 'auth/user-not-found':
         case 'auth/wrong-password':
             return 'Email or password is wrong';
+        case 'auth/email-already-in-use':
+            return 'Email already exist';
         case 'auth/user-disabled':
             return 'user blocked';
             case 'auth/weak-password':
@@ -22,8 +24,10 @@ function mapErrorsToMessage(errorCode) {
     }
 }
 
-// TODO: remove for prod
-connectAuthEmulator(auth, "http://localhost:9099");
+if (import.meta.env.DEV) {
+    connectAuthEmulator(auth, "http://localhost:9099");
+}
+
 
 function useAuth() {
     const errorMessage = ref('');

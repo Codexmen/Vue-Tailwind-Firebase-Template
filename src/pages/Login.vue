@@ -2,6 +2,8 @@
 import {ref, computed} from 'vue';
 import { useRouter } from 'vue-router'
 
+import Button from '/src/components/base/Button.vue'
+
 import {useAuth}  from '/src/useAuth';
 
 const router = useRouter();
@@ -16,26 +18,27 @@ const isSubmitDisabled = computed(() => {
 async function submit() {
     const isLoggedIn = await login(loginField.value, password.value);
     if (isLoggedIn) {
-        router.push('/protected');
+        router.push('/counter');
     }
 }
 </script>
 
 <template>
-    Login
+    <div class="prose prose-2xl text-center max-w-full">Log In</div>
     <div>
-        <div v-if="errorMessage">{{ errorMessage }}</div>
-        <div>
-            <label>Login:</label>
-            <input v-model="loginField" placeholder="username">
+        <div class="text-red-800 prose prose-sm" v-if="errorMessage">{{ errorMessage }}</div>
+        <div class="my-2">
+            <span class="text-gray-700">Email address:</span>
+            <input class="block w-full" type="text" v-model="loginField" placeholder="Email address">
         </div>
-        <div>
-            <label>Password:</label>
-            <input type="password" v-model="password" placeholder="password">
+        <div class="my-2">
+            <span class="text-gray-700">Password:</span>
+            <input class="block w-full" type="password" v-model="password" placeholder="password">
         </div>
-        <div>
-            <button :disabled="isSubmitDisabled" @click="submit">Login</button>
+        <div class="my-2">
+            <Button class="w-full" :is-disabled="isSubmitDisabled" @click="submit" label="Login"/>
         </div>
+      <div class="mt-4 text-center">Dont have an account? <router-link to="/signup" class="font-bold">Sign In</router-link></div>
     </div>
 </template>
 

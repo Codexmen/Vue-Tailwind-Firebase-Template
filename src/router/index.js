@@ -1,8 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import LoginPage from '/src/pages/Login.vue';
 import SignUpPage from '/src/pages/SignUp.vue';
-import HomePage from '/src/pages/Home.vue';
-import ProtectedPage from '/src/pages/ProtectedRoute.vue';
 import CounterPage from '/src/pages/Counter.vue';
 import {isUserLoggedInPromise} from "../useUser";
 
@@ -11,25 +9,18 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "home",
-      component: HomePage,
-    },
-    {
-      path: "/login",
       name: "login",
       component: LoginPage,
+      meta: {
+        requiresAuth: false
+      }
     },
     {
       path: "/signup",
       name: "SignUp",
       component: SignUpPage,
-    },
-    {
-      path: "/protected",
-      name: "protected",
-      component: ProtectedPage,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
@@ -51,6 +42,7 @@ router.beforeEach(async (to, from,next)=> {
   if (requiresAuth && !isLoggedIn) {
     next('/')
   } else {
+    console.log('render route');
     next();
   }
 })

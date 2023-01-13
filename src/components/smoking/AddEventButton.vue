@@ -1,5 +1,6 @@
 <script setup>
 import {useEventsStorage} from './useEventsStorage.js';
+import Button from '/src/components/base/Button.vue'
 defineProps({
   msg: String
 })
@@ -7,5 +8,5 @@ defineProps({
 </script>
 
 <template>
-    <button @click="() => addEvent((new Date).getTime())">Smoke</button>
+    <Button @click="() => addEvent((new Date).getTime())" label="Smoke"></Button>
 </template>

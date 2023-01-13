@@ -22,9 +22,12 @@ import {useEventsStorage} from './useEventsStorage.js';
 </script>
 
 <template>
-    <div>
-        Until next:
+    <div class="flex flex-col text-center">
+       <div> Until next: </div>
+      <div class="text-4xl">
         <span v-if="!isReady"> {{formattedTime ||'-' }}</span>
         <span v-if="isReady">Ready!</span>
+      </div>
+
     </div>
 </template>

@@ -7,12 +7,12 @@ import Summary from '/src/components/smoking/Summary.vue'
 </script>
 
 <template>
-    <div>
-        <AddEventButton />
-        <LastEventDiff />
-        <CountDownTimer />
-        <Summary />
-        <EventsList />
+    <div class="flex flex-col h-full">
+<!--        <LastEventDiff />-->
+      <CountDownTimer />
+      <Summary />
+      <AddEventButton class="mt-auto mb-8" />
+<!--      <EventsList />-->
     </div>
 </template>
 

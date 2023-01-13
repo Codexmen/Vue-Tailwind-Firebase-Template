@@ -1,17 +1,25 @@
 import { ref } from "vue";
 import {app} from '/src/services/firebase';
 import { getFirestore, collection, query, orderBy, addDoc, getDocs, connectFirestoreEmulator } from "firebase/firestore";
+import useUser, {isUserLoggedInPromise} from '/src/useUser';
 
 const db = getFirestore(app);
-connectFirestoreEmulator(db, 'localhost',8081)
-
+if (import.meta.env.DEV) {
+    connectFirestoreEmulator(db, 'localhost', 8081)
+}
 
 export default function useStorage(collectionName, mapper) {
-    const collectionRef = collection(db, collectionName);
+
     const list = ref([]);
     const isLoading = ref(false);
+    const {userData} = useUser();
+    // console.log(userData);
 
     async function fetchList() {
+        if (!userData.value) {
+            return;
+        }
+        const collectionRef = collection(db, collectionName, userData.value.uid, 'events');
         const q = query(collectionRef, orderBy('time', "desc"));
         isLoading.value = true;
         const querySnapshot = await getDocs(q);
@@ -29,6 +37,7 @@ export default function useStorage(collectionName, mapper) {
 
     async function addItem(payload) {
         try {
+            const collectionRef = collection(db, collectionName, userData.value.uid, 'events');
             const docRef = await addDoc(collectionRef, {...payload, time: Date.now()});
             return docRef;
         } catch (e) {
@@ -36,7 +45,8 @@ export default function useStorage(collectionName, mapper) {
         }
 
     }
-
-    fetchList();
+    isUserLoggedInPromise().then(() => {
+        fetchList();
+    })
     return {addItem,list, isLoading, fetchList,};
 }

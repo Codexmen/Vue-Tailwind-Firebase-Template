@@ -1,12 +1,14 @@
 This is demo project that uses Firebase as backend
 
-How to start 
-nvm use v14.20.0
+How to start
 npm run dev
 firebase emulators:start
 
 ## Critical path
- - add styles - tailwind, basic components, layout
+ - ~~add styles~~ 
+    - ~~tailwind~~
+   - ~~basic components~~ 
+   -  ~~layout~~
  - deploy
  - add domain
  - SEO and texts 
