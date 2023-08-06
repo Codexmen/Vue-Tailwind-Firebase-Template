@@ -4,20 +4,13 @@ import  BaseInput from '/src/components/base/Input.vue'
 </script>
 
 <template>
-    <h1>H1 text</h1>
-    <h2>H2 text</h2>
-    <h3>H3 text</h3>
-    <h4>H4 text</h4>
-    <h5>H1 text</h5>
-    <h6>H6 text</h6>
-    <p>paragraph long</p>
-    <div>
-        <BaseButton label="Login"/>
+  <div class="flex flex-col items-center justify-center h-screen">
+    <div class="text-5xl font-bold text-center mb-4">AssetKeeper</div>
+    <div class="text-xl text-center">Monitor and take control of all your financial assets in one convenient place</div>
+    <div class="flex items-center justify-center mt-8 gap-2">
+      <BaseButton link="/signup" theme="primary" class="w-full" label="Get Started" />
+      <BaseButton icon="mdi:arrow-right-thin" theme="secondary" class="w-full" label="Learn More" />
     </div>
-    <div>
-        <BaseInput />
-    </div>
-
-
+  </div>
 </template>
 

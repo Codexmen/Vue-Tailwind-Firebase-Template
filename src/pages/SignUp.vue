@@ -40,9 +40,9 @@ async function submit() {
             <input class="block w-full" type="password" v-model="password2" placeholder="password">
         </div>
         <div class="my-2">
-            <Button class="w-full" :is-disabled="isSubmitDisabled" @click="submit" label="Sign up"/>
+            <Button class="w-full"  theme="primary" :is-disabled="isSubmitDisabled" @click="submit" label="Sign up"/>
         </div>
-      <div class="mt-4 text-center">Already have an account? <router-link class="font-bold" to="/">Login</router-link></div>
+      <div class="mt-4 text-center">Already have an account? <router-link class="font-bold" to="/login">Login</router-link></div>
     </div>
 </template>
 

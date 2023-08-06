@@ -1,4 +1,4 @@
-import {getAuth, connectAuthEmulator, signInWithEmailAndPassword, createUserWithEmailAndPassword,  signOut} from 'firebase/auth';
+import {getAuth, connectAuthEmulator, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword,  signOut, GoogleAuthProvider} from 'firebase/auth';
 import {ref} from 'vue';
 
 import {app} from '/src/services/firebase';
@@ -59,7 +59,16 @@ function useAuth() {
             // An error happened.
         });
     }
-    return {login, logout, signUp, errorMessage, errorCode}
+    const loginWithGoogle = () => {
+        const provider = new GoogleAuthProvider();
+        return signInWithPopup(auth, provider)
+            .then((result) => {
+                return true;
+            }).catch((error) => {
+                errorMessage.value = mapErrorsToMessage(error.code)
+            });
+    };
+    return {login, logout, signUp, errorMessage, errorCode, loginWithGoogle}
 }
 export {auth, app, useAuth}
 

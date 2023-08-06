@@ -1,34 +1,24 @@
-This is demo project that uses Firebase as backend
+This is demo project that uses Firebase as backend.
+What include: 
+ - basic auth with google and login form
+ - basic validation with Vuelidate
+ - Tailwind CSS for styling
+ - eslint and prettier for code formatting
+ - cypress for e2e testing
 
 How to start
 npm run dev
 firebase emulators:start
 
 ## Critical path
- - ~~add styles~~ 
-    - ~~tailwind~~
-   - ~~basic components~~ 
-   -  ~~layout~~
- - deploy
- - add domain
- - SEO and texts 
-
-###TODO Critical 
-- Add DB and only creator queries
-- add security rules in console
-- Hide Firebase creds in env and split it to dev/prod
-- Deploy to netlify/firebase cloud 
-- PWA
-
-#### TODO Middle
-- Add styles for forms
- - add fields validation
- - add styles 
- - add layout
+ - Test login with google
+ - refactor Sig in form to use Vuelidate and new components
+ - add screen for logged in user with info
+ - Hide Firebase creds in env and split it to dev/prod
+ - add application config
+ - upload to github
+ - add eslint and prettier
  - add cypress tests
-
-##### TODO Minor
-
 
 
 #### Sources: 
