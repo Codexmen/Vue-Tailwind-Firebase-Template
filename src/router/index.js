@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import LoginPage from '/src/pages/Login.vue';
 import ForgotPassword from '/src/components/forms/ForgotPassword.vue';
 import HomePage from '/src/pages/Home.vue';
+import UserAccountPage from '/src/pages/UserAccount.vue';
 import SignUpPage from '/src/pages/SignUp.vue';
 import CounterPage from '/src/pages/Counter.vue';
 import {isUserLoggedInPromise} from "../useUser";
@@ -11,10 +12,29 @@ const router = createRouter({
   routes: [
     {
       path: "/",
+      name: "index",
+      component: HomePage,
+      meta: {
+        requiresAuth: false,
+        withHeader: true,
+      }
+    },
+      {
+      path: "/home",
       name: "home",
       component: HomePage,
       meta: {
-        requiresAuth: false
+        requiresAuth: false,
+        withHeader: true,
+      }
+    },
+       {
+      path: "/account",
+      name: "account",
+      component: UserAccountPage,
+      meta: {
+        requiresAuth: false,
+        withHeader: true,
       }
     },
        {

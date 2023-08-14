@@ -4,6 +4,9 @@ import {ref} from 'vue';
 import {app} from '/src/services/firebase';
 
 const auth = getAuth(app);
+if (import.meta.env.DEV) {
+    connectAuthEmulator(auth, "http://localhost:9099");
+}
 
 function mapErrorsToMessage(errorCode) {
     console.log(`errorCode: ${errorCode}`)
@@ -23,11 +26,6 @@ function mapErrorsToMessage(errorCode) {
             return 'Something went wrong';
     }
 }
-
-if (import.meta.env.DEV) {
-    connectAuthEmulator(auth, "http://localhost:9099");
-}
-
 
 function useAuth() {
     const errorMessage = ref('');

@@ -1,9 +1,12 @@
 <script setup>
 import  BaseButton from '/src/components/base/Button.vue'
-import  BaseInput from '/src/components/base/Input.vue'
+import Header from "../components/base/Header.vue";
+import {useRoute} from "vue-router";
+const route = useRoute();
 </script>
 
 <template>
+  <Header v-if="route.meta.withHeader" />
   <div class="flex flex-col items-center justify-center h-screen">
     <div class="text-5xl font-bold text-center mb-4">AssetKeeper</div>
     <div class="text-xl text-center">Monitor and take control of all your financial assets in one convenient place</div>

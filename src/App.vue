@@ -15,7 +15,7 @@ const logOutAndRedirect = async () => {
 </script>
 
 <template>
-    <div class="container mx-auto p-4 m-full h-screen">
+    <div class="w-screen h-screen">
         <router-view />
     </div>
 </template>

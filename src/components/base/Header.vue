@@ -1,33 +1,26 @@
 <script setup>
 import {ref} from 'vue'
-import CloseIcon from "@/components/icons/CloseIcon.vue";
-import HamburgerMenuIcon from "@/components/icons/HamburgerMenuIcon.vue";
-import DropDownButton from "@/components/DropDownButton.vue";
-
+import CloseIcon from '/src/components/base/icons/CloseIcon.vue';
+import HamburgerMenuIcon from '/src/components/base/icons/HamburgerMenuIcon.vue';
+import appConfig from '/src/app.conf.js'
 const isOpen = ref(false);
 
 </script>
 <template>
     <header class="p-4 shadow-md">
-        <div class="container px-4 mx-auto flex justify-center items-center">
+        <div class="container mx-auto flex justify-center items-center sm:justify-around">
             <div class="block sm:hidden mr-auto" >
-                <HamburgerMenuIcon class="text-white" @click="isOpen = true" />
+                <HamburgerMenuIcon class="text-black" @click="isOpen = true" />
                 <nav v-if="isOpen" class="w-full h-full fixed p-8 bg-white top-0 left-0 flex flex-col">
-                    <a class="py-2" href="#about">About</a>
-                    <a class="py-2" href="#contact">Contact</a>
+                    <router-link v-for="link in appConfig.mobileHeaderLinks" :key="link" class="py-2" :to="link.path">{{ link.label }}</router-link>
                     <CloseIcon class="absolute top-2 right-2 cursor-pointer" @click="isOpen = false" />
                 </nav>
             </div>
-            <a class="text-gray-800 font-bold text-2xl hover:underline cursor-pointer" href="/">Logo</a>
+            <a class="text-gray-800 font-bold text-2xl hover:underline cursor-pointer mr-auto" href="/">Logo</a>
+            <div class="ml-auto hidden sm:block"></div>
             <nav class="ml-auto hidden sm:flex ">
-                <DropDownButton class="mr-4" title="Drowdown props" />
-                <a class="p-2 mr-4 hover:bg-cyan-200 hover:text-slate-600 text-gray-800 rounded-md" href="#about">About</a>
-                <a class="p-2 mr-4 hover:bg-cyan-200 hover:text-slate-600 text-gray-800 rounded-md" href="/irregular-verbs">Irregular verbs</a>
-                <router-link class="p-2 hover:underline hover:text-slate-600 text-gray-800 rounded-md" to="/contacts">Contact</router-link>
+                <router-link v-for="link in appConfig.headerLinks" :key="link" class="p-2 mr-4 hover:bg-cyan-200 hover:text-slate-600 text-gray-800 rounded-md" :to="link.path">{{ link.label }}</router-link>
             </nav>
-            <div class="ml-auto sm:ml-0">
-                <router-link to="/login" class="p-2 hover:bg-blue-400 text-gray-800 cursor-pointer hover:text-slate-600 rounded-md">Login</router-link>
-            </div>
         </div>
 
     </header>

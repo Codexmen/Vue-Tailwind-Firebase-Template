@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 
 import {useAuth}  from '/src/useAuth';
 import Button from '/src/components/base/Button.vue'
+import appSettings from "/src/app.conf.js";
 
 const router = useRouter();
 const {signUp, errorMessage} = useAuth();
@@ -18,7 +19,7 @@ const isSubmitDisabled = computed(() => {
 async function submit() {
     const isLoggedIn = await signUp(loginField.value, password.value);
     if (isLoggedIn) {
-        router.push('/counter');
+        router.push(appSettings.defaultRouteAfterLogin);
     }
 }
 </script>

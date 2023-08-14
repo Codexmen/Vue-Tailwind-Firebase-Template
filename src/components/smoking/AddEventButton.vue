@@ -8,5 +8,5 @@ defineProps({
 </script>
 
 <template>
-    <Button @click="() => addEvent((new Date).getTime())" label="Smoke"></Button>
+    <Button theme="primary" @click="() => addEvent((new Date).getTime())" label="Smoke"></Button>
 </template>

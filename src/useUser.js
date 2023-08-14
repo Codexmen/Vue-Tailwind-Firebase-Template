@@ -2,6 +2,9 @@ import {ref} from 'vue';
 import {auth} from './useAuth';
 
 const userData = ref({});
+const userSettings = ref({
+    darkMode: false,
+});
 const isLoggedIn = ref(false);
 
 auth.onAuthStateChanged((user) => {
@@ -20,5 +23,5 @@ export const isUserLoggedInPromise = () => {
 };
 
 export default function useUser() {
-    return {userData, isLoggedIn}
+    return {userData, userSettings, isLoggedIn}
 }
