@@ -4,32 +4,32 @@ const settings = {
         {
             label: 'Home',
             path: '/home',
-            icon: undefined
+            icon: undefined,
         },
         {
             label: 'Account',
             path: '/account',
-            icon: undefined
-        }
+            icon: undefined,
+        },
     ],
     mobileHeaderLinks: [
         {
             label: 'Home',
             path: '/home',
-            icon: undefined
+            icon: undefined,
         },
         {
             label: 'Account',
             path: '/account',
-            icon: undefined
-        }
+            icon: undefined,
+        },
     ],
     footerLinks: [
         {
             sectionName: undefined,
-            links: [ { label: 'Home', path: '/home'} ],
-        }
-    ]
-}
+            links: [{ label: 'Home', path: '/home' }],
+        },
+    ],
+};
 
 export default settings;
