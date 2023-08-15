@@ -28,8 +28,15 @@ const settings = {
     ],
     footerLinks: [
         {
-            sectionName: undefined,
-            links: [{ label: 'Home', path: '/home' }],
+            sectionTitle: 'Footer Section 1',
+            links: [
+                { label: 'Home', path: '/home' },
+                { label: 'Login', path: '/login' },
+            ],
+        },
+        {
+            sectionTitle: 'Footer Section 2',
+            links: [{ label: 'Sign Up', path: '/signup' }],
         },
     ],
 };

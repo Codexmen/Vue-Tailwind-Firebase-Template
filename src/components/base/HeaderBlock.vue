@@ -25,7 +25,7 @@ const { isLoggedIn } = useUser();
                 <router-link
                     v-for="link in appConfig.headerLinks"
                     :key="link"
-                    class="p-2 mr-4 hover:bg-cyan-200 hover:text-slate-600 text-gray-800 rounded-md"
+                    class="p-2 mr-4 hover:text-cyan-700 text-gray-800 rounded-md"
                     :to="link.path"
                 >
                     {{ link.label }}
@@ -33,15 +33,11 @@ const { isLoggedIn } = useUser();
                 <router-link
                     v-if="isLoggedIn"
                     to="/account"
-                    class="p-2 mr-4 hover:bg-cyan-200 hover:text-slate-600 text-gray-800 rounded-md"
+                    class="p-2 mr-4 hover:text-cyan-700 text-gray-800 rounded-md"
                 >
                     Account
                 </router-link>
-                <router-link
-                    v-else
-                    to="/login"
-                    class="p-2 mr-4 hover:bg-cyan-200 hover:text-slate-600 text-gray-800 rounded-md"
-                >
+                <router-link v-else to="/login" class="p-2 mr-4 hover:text-cyan-700 text-gray-800 rounded-md">
                     Login
                 </router-link>
             </nav>

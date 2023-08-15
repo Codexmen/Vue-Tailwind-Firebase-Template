@@ -38,13 +38,6 @@ const props = defineProps({
 });
 const commonClasses =
     'whitespace-nowrap shadow inline-flex items-center justify-center border border-transparent rounded-md font-semibold focus:outline-none focus:shadow-outline transition duration-150 ease-in-out';
-// const themesProperties = {
-//   primary: {
-//     bgColor: 'bg-indigo-600',
-//     bgHoverColor: 'hover:bg-indigo-500',
-//     textColor: 'text-white',
-//   }
-// }
 const themeClasses = {
     primary: 'bg-primary-600 hover:bg-primary-500 text-white',
     secondary: 'bg-secondary-200 hover:bg-secondary-100 text-gray-800',

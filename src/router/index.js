@@ -5,7 +5,6 @@ import ForgotPassword from '/src/components/forms/ForgotPassword.vue';
 import HomePage from '/src/pages/HomePage.vue';
 import UserAccountPage from '/src/pages/UserAccount.vue';
 import SignUpPage from '/src/pages/SignUp.vue';
-import CounterPage from '/src/pages/CounterPage.vue';
 import { isUserLoggedInPromise } from '../useUser';
 
 const router = createRouter({
@@ -64,15 +63,16 @@ const router = createRouter({
                 requiresAuth: false,
             },
         },
-        {
-            path: '/counter',
-            name: 'counter',
-            component: CounterPage,
-            meta: {
-                requiresAuth: true,
-            },
-        },
     ],
+    scrollBehavior(to) {
+        //if to has hash then scroll to that hash
+        if (to.hash) {
+            return {
+                el: to.hash,
+                behavior: 'smooth',
+            };
+        }
+    },
 });
 
 router.beforeEach(async (to, from, next) => {
