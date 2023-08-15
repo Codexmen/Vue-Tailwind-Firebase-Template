@@ -1,4 +1,5 @@
 const settings = {
+    title: 'Demo Vue + Firebase App',
     defaultRouteAfterLogin: '/home',
     headerLinks: [
         {

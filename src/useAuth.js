@@ -10,10 +10,11 @@ import {
 import { ref } from 'vue';
 
 import { app } from '/src/services/firebase';
+import { emulators } from './firebase.conf';
 
 const auth = getAuth(app);
 if (import.meta.env.DEV) {
-    connectAuthEmulator(auth, 'http://localhost:9099');
+    connectAuthEmulator(auth, emulators.authUrl);
 }
 
 function mapErrorsToMessage(errorCode) {

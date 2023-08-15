@@ -10,10 +10,11 @@ import {
     connectFirestoreEmulator,
 } from 'firebase/firestore';
 import useUser, { isUserLoggedInPromise } from '/src/useUser';
+import { emulators } from '../firebase.conf';
 
 const db = getFirestore(app);
 if (import.meta.env.DEV) {
-    connectFirestoreEmulator(db, 'localhost', 8081);
+    connectFirestoreEmulator(db, emulators.firestore.host, emulators.firestore.port);
 }
 
 export default function useStorage(collectionName) {

@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import settings from '/src/app.conf.js';
 import LoginPage from '/src/pages/LoginForm.vue';
 import ForgotPassword from '/src/components/forms/ForgotPassword.vue';
 import HomePage from '/src/pages/HomePage.vue';
@@ -26,6 +27,7 @@ const router = createRouter({
             meta: {
                 requiresAuth: false,
                 withHeader: true,
+                title: (title) => `${title} - Home page`,
             },
         },
         {
@@ -33,8 +35,9 @@ const router = createRouter({
             name: 'account',
             component: UserAccountPage,
             meta: {
-                requiresAuth: false,
+                requiresAuth: true,
                 withHeader: true,
+                title: 'User Account',
             },
         },
         {
@@ -82,5 +85,9 @@ router.beforeEach(async (to, from, next) => {
         console.log('render route');
         next();
     }
+});
+router.afterEach((to) => {
+    document.title =
+        typeof to.meta.title === 'function' ? to.meta.title(settings.title) : to.meta.title || settings.title;
 });
 export default router;
