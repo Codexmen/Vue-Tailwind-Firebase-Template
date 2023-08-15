@@ -8,7 +8,7 @@ const isOpen = ref(false);
 const { isLoggedIn } = useUser();
 </script>
 <template>
-    <header class="p-4 shadow-md">
+    <header class="p-4 shadow-md bg-slate-200">
         <div class="container mx-auto flex justify-center items-center sm:justify-around">
             <div class="block sm:hidden mr-auto">
                 <HamburgerMenuIcon class="text-black" @click="isOpen = true" />
