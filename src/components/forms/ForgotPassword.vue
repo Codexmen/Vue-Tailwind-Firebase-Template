@@ -14,11 +14,11 @@ async function submit() {
 }
 </script>
 <template>
-    <div>
+    <div class="md:w-[480px] mx-auto px-4">
         <div class="prose prose-2xl text-center max-w-full">Forgot Password</div>
         <div class="prose text-center max-w-full">An email will be sent to you with a link to reset your password!</div>
         <FormInput v-model="emailField" label="Email address:" />
-        <div class="my-2">
+        <div class="my-2 w-full md:w-auto">
             <Button theme="primary" class="w-full" :is-disabled="isSubmitDisabled" label="Submit" @click="submit" />
         </div>
         <div class="mt-4 text-center hover:underline">

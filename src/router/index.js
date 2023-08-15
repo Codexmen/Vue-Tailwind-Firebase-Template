@@ -82,7 +82,6 @@ router.beforeEach(async (to, from, next) => {
     if (requiresAuth && !isLoggedIn) {
         next('/');
     } else {
-        console.log('render route');
         next();
     }
 });

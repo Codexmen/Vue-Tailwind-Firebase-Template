@@ -21,7 +21,6 @@ const rules = {
     password: { required },
 };
 const isSubmitDisabled = computed(() => {
-    console.log(state.loginField, state.password);
     return !state.loginField || !state.password;
 });
 const v$ = useVuelidate(rules, state);
@@ -45,33 +44,49 @@ async function loginWithGoogleProvider() {
 </script>
 
 <template>
-    <div class="prose prose-2xl text-center max-w-full">Log In</div>
-    <div>
-        <div v-if="errorMessage" class="text-red-800 prose prose-sm">
-            {{ errorMessage }}
-        </div>
-        <div class="my-2">
-            <FormInput v-model="v$.loginField.$model" :errors="v$.loginField.$errors" label="Email address:" />
-        </div>
-        <div class="my-2">
-            <FormInput v-model="v$.password.$model" :errors="v$.password.$errors" type="password" label="Password:" />
-        </div>
-        <div class="my-2 flex gap-2">
-            <Button theme="primary" class="" :disabled="isSubmitDisabled" label="Login" @click="submit" />
-            <Button
-                theme="transparent"
-                class=""
-                icon-before="flat-color-icons:google"
-                label="Sign in with Google"
-                @click="loginWithGoogleProvider"
-            />
-        </div>
-        <div class="mt-4 text-center hover:underline">
-            <router-link to="/forgot-password"> Forgot password? </router-link>
-        </div>
-        <div class="mt-4 text-center">
-            Dont have an account?
-            <router-link to="/signup" class="font-bold text-red-600 hover:underline"> Sign In </router-link>
+    <div class="md:w-[480px] mx-auto px-4">
+        <div class="prose prose-2xl text-center max-w-full">Log In</div>
+        <div>
+            <div v-if="errorMessage" class="text-red-800 prose prose-sm">
+                {{ errorMessage }}
+            </div>
+            <div v-if="appSettings.auth.withEmailSignIn">
+                <div class="my-2">
+                    <FormInput v-model="v$.loginField.$model" :errors="v$.loginField.$errors" label="Email address:" />
+                </div>
+                <div class="my-2">
+                    <FormInput
+                        v-model="v$.password.$model"
+                        :errors="v$.password.$errors"
+                        type="password"
+                        label="Password:"
+                    />
+                </div>
+            </div>
+            <div class="my-2">
+                <Button
+                    v-if="appSettings.auth.withEmailSignIn"
+                    theme="primary"
+                    class="w-full my-2"
+                    :disabled="isSubmitDisabled"
+                    label="Login"
+                    @click="submit"
+                />
+                <Button
+                    theme="transparent"
+                    class="w-full my-2"
+                    icon-before="flat-color-icons:google"
+                    label="Sign in with Google"
+                    @click="loginWithGoogleProvider"
+                />
+            </div>
+            <div v-if="appSettings.auth.withForgotPassword" class="mt-4 text-center hover:underline">
+                <router-link to="/forgot-password"> Forgot password? </router-link>
+            </div>
+            <div v-if="appSettings.auth.withEmailSignUp" class="mt-4 text-center">
+                Dont have an account?
+                <router-link to="/signup" class="font-bold text-red-600 hover:underline"> Sign In </router-link>
+            </div>
         </div>
     </div>
 </template>

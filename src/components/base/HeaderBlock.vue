@@ -3,7 +3,9 @@ import { ref } from 'vue';
 import CloseIcon from '/src/components/base/icons/CloseIcon.vue';
 import HamburgerMenuIcon from '/src/components/base/icons/HamburgerMenuIcon.vue';
 import appConfig from '/src/app.conf.js';
+import useUser from '../../useUser';
 const isOpen = ref(false);
+const { isLoggedIn } = useUser();
 </script>
 <template>
     <header class="p-4 shadow-md">
@@ -27,6 +29,20 @@ const isOpen = ref(false);
                     :to="link.path"
                 >
                     {{ link.label }}
+                </router-link>
+                <router-link
+                    v-if="isLoggedIn"
+                    to="/account"
+                    class="p-2 mr-4 hover:bg-cyan-200 hover:text-slate-600 text-gray-800 rounded-md"
+                >
+                    Account
+                </router-link>
+                <router-link
+                    v-else
+                    to="/login"
+                    class="p-2 mr-4 hover:bg-cyan-200 hover:text-slate-600 text-gray-800 rounded-md"
+                >
+                    Login
                 </router-link>
             </nav>
         </div>
